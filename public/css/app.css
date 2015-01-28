@@ -1,0 +1,31 @@
+#content {
+  padding: 3em;
+}
+
+#text-input {
+  padding-top: 1em;
+}
+
+#text-box {
+  width: 90%
+}
+
+a#start-chatting {
+  display: block;
+  font-size: 3em;
+  width: 100%;
+  margin: 1em 0;
+}
+
+#log {
+  overflow-y: auto; height: 50ex;
+}
+
+.introduction {
+  padding: 0 1em 1em;
+}
+
+.introduction p {
+  padding: 0 0 0 1em;
+  margin: 0;
+}
