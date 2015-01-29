@@ -1,0 +1,11 @@
+<h1>Calendars</h1>
+<p>Please select a calendar for your radio to listen to.</p>
+<ul>
+<% _.each(calendars, function(cal) { %>
+  <li>
+    <a href="/api/user/calendar/<%= cal.id %>">
+      <%= cal.get('summary') %>
+    </a>
+  </li>
+<% }) %>
+</ul>

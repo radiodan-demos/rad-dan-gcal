@@ -45,10 +45,10 @@ app.get('/api/user', function(req, res) {
   res.json({auth: auth.isValid()});
 });
 
-app.post('/api/user/calendar', function(req, res) {
+app.get('/api/user/calendar/:id', function(req, res) {
   if(auth.isValid()) {
-    auth.calendar = req.params.calendar;
-    res.sendCode(200)
+    auth.calendar = req.params.id;
+    res.redirect('/app/dashboard');
   } else {
     auth.sendCode(400);
   }
@@ -65,7 +65,7 @@ app.get('/oauth2callback', function(req, res) {
   auth.requestTokens(code)
     .then(function(tokens) {
       auth.setTokens(tokens);
-      res.redirect(req.session.backURL || '/calendars');
+      res.redirect(req.session.backURL || '/app/calendars');
       delete req.session.backURL;
     }, function(err) {
       console.log(err);
@@ -76,9 +76,11 @@ app.get('/oauth2callback', function(req, res) {
 app.get('/api/calendars', function(req, res) {
   gcal.calendarList().then(
     function(calendars) {
-      res.json(
-        calendars.items.map(function(c) { return [c.summary, c.id] })
-      );
+      var cals = calendars.items.map(function(c) {
+        return {summary: c.summary, id: c.id};
+      });
+
+      res.json(cals);
     }, function(err) {
       res.sendStatus(400);
     });

@@ -9,12 +9,13 @@ require.config({
   }
 });
 
-require(['jquery', 'backbone'], function($, Backbone) {
-  $(function() {
-    // initialize App
-    //new AppController($('#nav'), $('#content'));
-
-    Backbone.history.start({pushState: true});
-    console.log('lol');
-  });
+require(
+  ['jquery', 'backbone', 'app/router'],
+  function($, Backbone, AppRouter) {
+    $(function() {
+      // initialize App
+      var router = new AppRouter();
+      Backbone.history.start({pushState: true});
+      console.log('ready');
+    });
 });
