@@ -1,18 +1,16 @@
 {
   "name": "rad-dan-cal",
   "version": "1.0.0",
-  "description": "",
+  "description": "Radiodan that plays to your schedule",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dan Nuttall <pixelblend@gmail.com>",
+  "license": "Apache-2",
   "dependencies": {
     "body-parser": "^1.10.2",
     "ejs": "^2.2.3",
-    "eventemitter2": "^0.4.14",
-    "eventsource": "^0.1.4",
     "express": "^4.11.1",
     "express-session": "^1.10.1",
     "googleapis": "^1.1.1",
