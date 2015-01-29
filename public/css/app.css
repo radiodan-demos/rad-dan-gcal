@@ -17,8 +17,8 @@ a#start-chatting {
   margin: 1em 0;
 }
 
-#log {
-  overflow-y: auto; height: 50ex;
+#events-list {
+  overflow-y: auto; height: 20ex; width: 60%;
 }
 
 .introduction {

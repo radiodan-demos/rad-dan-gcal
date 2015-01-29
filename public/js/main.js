@@ -16,6 +16,5 @@ require(
       // initialize App
       var router = new AppRouter();
       Backbone.history.start({pushState: true});
-      console.log('ready');
     });
 });

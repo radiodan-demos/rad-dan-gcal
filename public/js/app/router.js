@@ -2,8 +2,9 @@
 
 define(
   ['underscore', 'jquery', 'backbone',
-  'app/model/user', 'app/view/signin', 'app/view/calendar'],
-  function(_, $, Backbone, User, SigninView, CalendarView) {
+  'app/model/user',
+  'app/view/signin', 'app/view/calendar', 'app/view/dashboard'],
+  function(_, $, Backbone, User, SigninView, CalendarView, DashboardView) {
     var AppRouter = Backbone.Router.extend({
       routes: {
         'app(/)': 'index',
@@ -59,7 +60,8 @@ define(
         this.user.fetch().then(
           function() {
             if(self.user.isValid()) {
-              self.$content.html('<h1>Dashboard</h1>');
+              var dash = new DashboardView();
+              self.$content.html(dash.render());
             } else {
               self.navigate('/app/signin', { trigger: true });
             }

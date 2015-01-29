@@ -5,7 +5,8 @@ var app          = require('express')(),
     radiodan     = require('radiodan-client'),
     port         = process.env.PORT || 5000,
     auth         = require('./lib/auth').create(port),
-    gcal         = require('./lib/calendar').create(auth.client);
+    gcal         = require('./lib/calendar').create(auth.client),
+    player       = require('./lib/player').create();
 
 app.use(bodyParser.json());
 
@@ -39,6 +40,22 @@ app.get('/api/user/calendar', function(req, res) {
   }
 
   res.json(auth.calendar||{});
+});
+
+app.get('/api/user/events', function(req, res) {
+  if(!auth.isValid()) {
+    res.sendCode(400);
+  }
+
+  gcal.eventList(auth.calendar).then(
+    function(events) {
+      player.events(events);
+      res.json(events);
+    }, function(err) {
+      console.log(err);
+      res.sendStatus(400);
+    }
+  );
 });
 
 app.get('/api/user', function(req, res) {

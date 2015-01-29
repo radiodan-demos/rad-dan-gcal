@@ -11,9 +11,13 @@
   "dependencies": {
     "body-parser": "^1.10.2",
     "ejs": "^2.2.3",
+    "eventemitter2": "^0.4.14",
+    "eventsource": "^0.1.4",
     "express": "^4.11.1",
     "express-session": "^1.10.1",
     "googleapis": "^1.1.1",
+    "q": "^1.1.2",
+    "q-io": "^1.11.6",
     "radiodan-client": "https://github.com/radiodan/radiodan-client.js/archive/master.tar.gz",
     "serve-static": "^1.8.1"
   }
