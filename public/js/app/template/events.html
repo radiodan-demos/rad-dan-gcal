@@ -1,0 +1,7 @@
+<ul>
+<% _.each(events, function(ev) { %>
+  <li><a href="<%=ev.get('link')%>"><%= ev.get('name') %></a>
+    (<%= new Date(ev.get('start')) %> - <%= new Date(ev.get('end')) %>)
+  </li>
+<% }) %>
+</ul>

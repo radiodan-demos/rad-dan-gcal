@@ -4,7 +4,6 @@
   "description": "Radiodan that plays to your schedule",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dan Nuttall <pixelblend@gmail.com>",

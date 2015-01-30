@@ -1,0 +1,6 @@
+<% if(station) { %>
+  <img src="<%= station.get('logo') %>" />
+  <h3><%= station.get('title') %></h3>
+<% } else { %>
+  <h3>No station playing</h3>
+<% } %>

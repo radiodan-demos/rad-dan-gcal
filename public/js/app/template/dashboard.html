@@ -1,13 +1,6 @@
 <h1>Dashboard</h1>
 <h2>Events</h2>
 <div id="events-list">
-  <ul>
-    <% _.each(events, function(ev) { %>
-    <li><a href="<%=ev.get('link')%>"><%= ev.get('name') %></a>
-      (<%= new Date(ev.get('start')) %> - <%= new Date(ev.get('end')) %>)
-    </li>
-    <% }) %>
-  </ul>
 </div>
 <h3>Currently Playing</h3>
 <div id="playing"></div>

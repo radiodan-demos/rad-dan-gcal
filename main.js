@@ -1,4 +1,5 @@
-var app          = require('express')(),
+var express      = require('express'),
+    app          = express(),
     bodyParser   = require('body-parser'),
     session      = require('express-session'),
     serveStatic  = require('serve-static'),
@@ -6,7 +7,11 @@ var app          = require('express')(),
     port         = process.env.PORT || 5000,
     auth         = require('./lib/auth').create(port),
     gcal         = require('./lib/calendar').create(auth.client),
-    player       = require('./lib/player').create();
+    bbcServices  = require('./lib/bbc-services').create(),
+    player       = require('./lib/player').create(bbcServices),
+    EventStream  = require('./lib/eventstream');
+
+app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 
@@ -18,7 +23,7 @@ app.use(session({
 
 app.use(serveStatic('./public'));
 
-app.set('view engine', 'ejs');
+app.use('/events', EventStream.create(express.Router(), player.events));
 
 app.get('/api/signin', function(req, res) {
   if(auth.isValid()) {
@@ -32,6 +37,20 @@ app.get('/api/signout', function(req, res) {
   auth.setTokens({});
 
   res.redirect('back');
+});
+
+app.get('/api/stations', function(req, res) {
+  bbcServices.stations()
+    .then(function(stations) {
+      var stationArray = Object.keys(stations).map(function(k) {
+        return stations[k];
+      });
+
+      res.json(stationArray);
+    },
+    function() {
+      res.sendCode(500);
+    });
 });
 
 app.get('/api/user/calendar', function(req, res) {
@@ -50,7 +69,7 @@ app.get('/api/user/events', function(req, res) {
   // one time setup for web request
   gcal.eventList(auth.calendar).then(
     function(events) {
-      player.events(events);
+      player.setEvents(events);
       res.json(events);
     }, function(err) {
       console.log(err);
