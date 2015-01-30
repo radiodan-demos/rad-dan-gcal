@@ -4,12 +4,14 @@
   "description": "Radiodan that plays to your schedule",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dan Nuttall <pixelblend@gmail.com>",
   "license": "Apache-2",
   "dependencies": {
     "body-parser": "^1.10.2",
+    "deep-equal": "^0.2.1",
     "ejs": "^2.2.3",
     "express": "^4.11.1",
     "express-session": "^1.10.1",

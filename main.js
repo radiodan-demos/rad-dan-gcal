@@ -47,6 +47,7 @@ app.get('/api/user/events', function(req, res) {
     res.sendCode(400);
   }
 
+  // one time setup for web request
   gcal.eventList(auth.calendar).then(
     function(events) {
       player.events(events);
@@ -56,6 +57,9 @@ app.get('/api/user/events', function(req, res) {
       res.sendStatus(400);
     }
   );
+
+  // refreshing events to player
+  gcal.refreshEvents(auth.calendar, player);
 });
 
 app.get('/api/user', function(req, res) {
