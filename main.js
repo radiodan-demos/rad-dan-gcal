@@ -90,7 +90,7 @@ app.get('/api/user/calendar/:id', function(req, res) {
     auth.calendar = req.params.id;
     res.redirect('/app/dashboard');
   } else {
-    auth.sendCode(400);
+    res.sendStatus(400);
   }
 });
 
